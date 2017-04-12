@@ -3,14 +3,14 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <form name="register" action="{{ path('security-register') }}" method="POST">
-                <h2> Register</h2>
-                <input type="text" name="user[name]" class="form-control">
-                <input type="text" name="user[email]" class="form-control">
-                <input type="passowrd" name="user[password]" class="form-control">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}">
+            <h2>Registration page</h2>
+            <div class="well">
+            
+            {{ form_start(registerForm) }}
+                {{ form_widget(registerForm) }}
                 <input type="submit" value="Submit" class="btn btn-lg">
-            </form>
+            {{ form_end(registerForm) }}
+            </div>
         </div>
     </div>
 {% endblock %}

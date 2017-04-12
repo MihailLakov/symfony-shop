@@ -3,13 +3,20 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <form name="authenticate" action="{{ path('security-login') }}" method="POST">
-                <h2> Login</h2>
-                <input type="text" name="_username" class="form-control">
-                <input type="text" name="_password" class="form-control">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <input type="submit" value="Submit" class="btn btn-lg">
-            </form>
+            <h2> Please login! </h2>
+            <div class="well">
+                <form action="{{path('security-login')}}" method="POST">
+                    <div class="form-group">
+                        <label class="control-label" for="_username">Username</label>
+                        <input type="text" name="_username" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="_username">Password</label>
+                        <input type="password" name="_password" class="form-control"> 
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login </button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

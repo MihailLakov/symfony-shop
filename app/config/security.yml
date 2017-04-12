@@ -3,10 +3,14 @@
 security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+        ShopBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 11
     providers:
-        in_memory:
-            memory: ~
-
+        database_users:
+            entity: { class: ShopBundle:User, property: email }
+   
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -22,3 +26,11 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #form_login: ~
+            form_login:
+                login_path: security-login
+                check_path: security-login
+                
+            logout:
+                path:   security-logout
+                target: homepage
+
