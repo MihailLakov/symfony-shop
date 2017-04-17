@@ -14,6 +14,7 @@
                         <label class="control-label" for="_username">Password</label>
                         <input type="password" name="_password" class="form-control"> 
                     </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                     <button type="submit" class="btn btn-primary">Login </button>
                 </form>
             </div>

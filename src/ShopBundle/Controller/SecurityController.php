@@ -50,11 +50,10 @@ class SecurityController extends Controller
         $form->handleRequest($request);
        
         
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $password = $this->get('security.password_encoder')
                     ->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);            
-
+            $user->setPassword($password);   
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
