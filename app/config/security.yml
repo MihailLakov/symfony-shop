@@ -39,5 +39,5 @@ security:
         ROLE_ADMIN:       [ROLE_EDITOR, ROLE_USER]
         
     access_control:
-        - { path: ^/secured, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         

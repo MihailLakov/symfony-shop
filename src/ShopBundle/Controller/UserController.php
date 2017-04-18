@@ -28,15 +28,7 @@ class UserController extends Controller
         
     }
     
-    /**
-     * @Route("/secured")
-     * @param Request $request
-     */
-    public function securedAction(Request $request){
-        
-        echo 'asd';
-        return new Response();
-    }
+   
     
    
 
