@@ -53,7 +53,9 @@ class SecurityController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $this->get('security.password_encoder')
                     ->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);   
+            $user->setPassword($password);  
+            $userRole = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['name' => 'ROLE_USER']);
+            $user->addRole($userRole);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -63,6 +65,14 @@ class SecurityController extends Controller
         return $this->render('security/register.html.twig',
                 ['registerForm' => $form->createView()]
                 );
+    }
+    
+    /**
+     * 
+     * @Route("/error403", name="error403")
+     */
+    public function unauthorisedAction(){
+        return $this->render('security/403.html.twig');
     }
 
 }

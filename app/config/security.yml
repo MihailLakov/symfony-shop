@@ -10,7 +10,7 @@ security:
     providers:
         database_users:
             entity: { class: ShopBundle:User, property: email }
-   
+    access_denied_url: '/error403'        
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -33,4 +33,11 @@ security:
             logout:
                 path:   security-logout
                 target: homepage
-
+    role_hierarchy:
+        ROLE_USER : ROLE_USER
+        ROLE_EDITOR:    ROLE_USER
+        ROLE_ADMIN:       [ROLE_EDITOR, ROLE_USER]
+        
+    access_control:
+        - { path: ^/secured, roles: ROLE_ADMIN }
+        

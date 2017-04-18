@@ -4,7 +4,7 @@ namespace ShopBundle\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User
  *
@@ -52,8 +52,22 @@ class User implements UserInterface
      * @Assert\NotBlank()
      */
     private $password;
-
-
+    
+    /**
+     *
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="ShopBundle\Entity\Role", inversedBy="users")
+     * @ORM\JoinTable(name="users_roles",
+     *  joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     * )
+     */
+    private $roles;
+    
+    
+    public function __construct(){
+      $this->roles = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -139,9 +153,18 @@ class User implements UserInterface
     public function eraseCredentials() {
         
     }
-
-    public function getRoles() {
-        return array('ROLE_USER');
+  
+    
+    public function addRole($role){
+        $this->roles->add($role);
+    }
+    public function getRoles() {        
+        
+        $rolesStrings =[];
+        foreach($this->roles as $role){
+            $rolesStrings[] = $role->getName();
+        }
+        return $rolesStrings;
     }
 
     public function getSalt() {
