@@ -11,6 +11,14 @@
                     <p><strong>Role: </strong> {{ role |trim('ROLE_')}}</p>
                 {% endfor %}
             </div>
+            <h2>Change Password</h2>
+            <div class="well">
+                {{ form_start(changePassForm) }}
+                {{ form_widget(changePassForm) }}
+                <input type="submit" value="Submit" class="btn btn-lg">
+                {{ form_rest(changePassForm) }}
+            {{ form_end(changePassForm) }}
+            </div>
         </div>
     </div>
 {% endblock %}
