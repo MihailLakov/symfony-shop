@@ -19,53 +19,25 @@ class UserController extends Controller {
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->getUser();
-            $form = $this->createForm(ChangePasswordType::class, null, array(
-                'action' => $this->generateUrl('user-profile-change-password'),
-                'method' => 'POST',
-                    )
-            );
-
+            $form = $this->createForm(ChangePasswordType::class);
+            $form->handleRequest($request);             
+            if ($form->isSubmitted() && $form->isValid()) {  
+                  $password = $this->get('security.password_encoder')
+                  ->encodePassword($user, $form->get('newPassword')->getData());
+                  $user->setPassword($password);
+                  $em = $this->getDoctrine()->getManager();
+                  $em->persist($user);
+                  $em->flush();
+             }
             return $this->render('user/profile.html.twig', [
                         'user' => $user,
-                        'changePassForm' => $form->createView()
+                        'changePassForm' => $form->createView(),
+                        'errors' => $form->getErrors()
             ]);
         }
         return $this->redirectToRoute('security-login');
     }
 
-    /**
-     * @Route("/password-change", name="user-profile-change-password") 
-     * @param Request $request
-     * @method 'POST'
-     * @return Response 
-     */
-    public function changePasswordAction(Request $request) {
-
-        $form = $this->createForm(ChangePasswordType::class, null, array(
-            'action' => $this->generateUrl('user-profile-change-password'),
-            'method' => 'POST',
-                )
-        );
-        $form->handleRequest($request);
-        $user = $this->getUser();
-        if ($form->isSubmitted() && $form->isValid()) {
-            var_dump($form->get('newPassword')->getData());
-            var_dump($user);
-            exit();
-            /*
-              $password = $this->get('security.password_encoder')
-              ->encodePassword($user, $form->get('newPassword')->getData());
-              $user->setPassword($password);
-              $em = $this->getDoctrine()->getManager();
-              $em->persist($user);
-              $em->flush();
-             * 
-             */
-        }
-         return $this->render('user/profile.html.twig', [
-                        'user' => $user,
-                        'changePassForm' => $form->createView()
-            ]);
-    }
+    
 
 }

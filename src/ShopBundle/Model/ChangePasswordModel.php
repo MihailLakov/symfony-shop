@@ -4,7 +4,6 @@ namespace ShopBundle\Model;
 
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Component\Validator\Constraints as Assert;
-use ShopBundle\Entity\User;
 class ChangePasswordModel  {
 
      /**
@@ -29,7 +28,7 @@ class ChangePasswordModel  {
      */
     public function setOldPassword($oldPassword)
     {
-        $this->email = $oldPassword;
+        $this->oldPassword = $oldPassword;
         return $this;
     }
 
@@ -49,7 +48,7 @@ class ChangePasswordModel  {
      */
     public function setNewPassword($newPassword)
     {
-        $this->email = $newPassword;
+        $this->newPassword = $newPassword;
         return $this;
     }
 
