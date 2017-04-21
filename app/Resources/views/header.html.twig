@@ -17,10 +17,27 @@
                     <li><a href="{{path('security-register')}}">Register</a></li>
                     <li><a href="{{path('user-profile')}}">Profile</a></li>  
                     <li><a href="{{path('security-logout')}}">Logout</a></li>
-                               
+
                 </ul>              
-            
+
             </div>
         </div>
     </nav>
 </header>
+<div class="notifications">    
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
+    {% endfor %}
+    
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
+    {% endfor %}
+    
+    {% for flashMessage in app.session.flashbag.get('info') %}
+        <div class="alert alert-info" role="alert">{{ flashMessage }}</div>
+    {% endfor %}
+    
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning" role="alert">{{ flashMessage }}</div>
+    {% endfor %}    
+</div>

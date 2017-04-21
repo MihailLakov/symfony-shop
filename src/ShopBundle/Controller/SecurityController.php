@@ -22,7 +22,6 @@ class SecurityController extends Controller
         $authenticationUtils = $this->get('security.authentication_utils');        
         $error = $authenticationUtils->getLastAuthenticationError();        
         $lastUsername = $authenticationUtils->getLastUsername();
-
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
@@ -59,6 +58,7 @@ class SecurityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+            $this->get('session')->getFlashBag()->set('success', "You have registered an account, please log in!");
             return $this->redirectToRoute('security-login');
         }
 

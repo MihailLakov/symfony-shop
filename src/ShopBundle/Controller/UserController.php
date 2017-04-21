@@ -28,6 +28,8 @@ class UserController extends Controller {
                   $em = $this->getDoctrine()->getManager();
                   $em->persist($user);
                   $em->flush();
+                  
+                  $this->get('session')->getFlashBag()->set('success', 'Password Changed');
              }
             return $this->render('user/profile.html.twig', [
                         'user' => $user,
