@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            
+            <h2>Category {{products[0].category.title}}</h2>
+            {% for product in products %}
+            <div class="well">
+                <h3>{{product.title}}</h3>
+                <p>Description: {{ product.description }}</p>
+                <p>Price: {{ product.price }}</p>
+                <p>Stock: {{ product.stock }}</p>                
+                <a href="{{path('edit-product',{id:product.id}) }}"  class="btn btn- btn-primary">Edit</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

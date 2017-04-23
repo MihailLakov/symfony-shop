@@ -26,5 +26,21 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository {
         $products = $query->getResult();
         return $products;
     }
+    
+    public function findAllProductsFromCategory($id){
+       $qb = $this->getEntityManager()->createQueryBuilder();
+       $qb->select('p')
+               ->from(Product::class,'p')
+                ->where( 
+                        $qb->expr()->eq('p.category', ':id'),
+                        $qb->expr()->gt('p.stock', '0'),
+                         $qb->expr()->eq('p.published', '1')
+                        )
+                ->setParameter('id', $id)
+                ->getQuery();       
+        $query = $qb->getQuery();
+        $products = $query->getResult();
+        return $products;
+    }
 
 }

@@ -24,5 +24,21 @@ class CatalogController extends Controller {
         ));    
     }
     
+    
+    /**
+     * @Route("/catalog/category/{id}", name="catalog-view-category") 
+     * @param Request $request, int $id
+     * @return Response 
+     */
+    public function showProductsByCategoryAction(Request $request, $id){
+        $repo = $this->getDoctrine()->getRepository(Product::class);        
+        $products = $repo->findAllProductsFromCategory($id);
+        
+        return $this->render('catalog/category.html.twig', array(
+            'products'=>$products                
+        ));    
+        
+    }
+    
   
 }
