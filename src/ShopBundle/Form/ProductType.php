@@ -9,6 +9,7 @@ use \Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use \Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use \Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use \Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use \Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use ShopBundle\Entity\Category;
 class ProductType extends AbstractType
@@ -21,6 +22,10 @@ class ProductType extends AbstractType
             'currency'=>'BGN'
         ));
         $builder->add('stock',IntegerType::class);
+        $builder->add('image',  FileType::class, array(
+            'data_class' => null,
+            'required' => false
+        ));
         $builder->add('published', CheckboxType::class, array(
             'required' => false
         ));

@@ -3,7 +3,7 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Product
  *
@@ -64,7 +64,14 @@ class Product
      * 
      */
     private $category;
-            
+    
+    /**
+     *
+     * @var type 
+     * @ORM\Column(name="image",  type="string")
+     * @Assert\Image()
+     */
+    private $image;
     /**
      * Get id
      *
@@ -195,11 +202,37 @@ class Product
         return $this->published;
     }
     
+    /**
+     * set Image
+     * @param type $image
+     * @return \ShopBundle\Entity\Product
+     */
+    public function setImage($image){
+        $this->image = $image;
+        return $this;
+    }
+    
+    /**
+     * Get Image
+     * @return type
+     */
+    public function getImage(){
+        return $this->image;
+    }
+    /**
+     * Set Category
+     * @param  \ShopBundle\Entity\Category $category
+     * @return \ShopBundle\Entity\Product\
+     */
     public function setCategory($category){
         $this->category = $category;
         return $this;
     }
     
+    /**
+     * 
+     * @return \ShopBundle\Entity\Category $category
+     */
     public function getCategory(){
         return $this->category;
     }

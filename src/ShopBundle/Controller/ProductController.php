@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use ShopBundle\Form\ProductType;
 use ShopBundle\Entity\Product;
 class ProductController extends Controller {
@@ -24,6 +25,14 @@ class ProductController extends Controller {
         
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
+            
+            
+            $image = $product->getImage();        
+            if($image instanceof UploadedFile){
+                $imageName = md5(uniqid()).'.' . $image->guessExtension();            
+                $image->move($this->getParameter('product_images_dir'), $imageName);            
+                $product->setImage($imageName);    
+            }       
             $em->persist($product);
             $em->flush();
             $this->get('session')->getFlashBag()->set('success', 'Product added');
@@ -62,7 +71,12 @@ class ProductController extends Controller {
         
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-          
+            $image = $product->getImage();    
+            if($image instanceof UploadedFile){
+                $imageName = md5(uniqid()).'.' . $image->guessExtension();            
+                $image->move($this->getParameter('product_images_dir'), $imageName);            
+                $product->setImage($imageName);    
+            }
             $em->flush();
             $this->get('session')->getFlashBag()->set('success', 'Product updated');      
         }
