@@ -55,6 +55,7 @@ class SecurityController extends Controller
             $user->setPassword($password);  
             $userRole = $this->getDoctrine()->getRepository(Role::class)->findOneBy(['name' => 'ROLE_USER']);
             $user->addRole($userRole);
+            $user->setBalance(100);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

@@ -64,9 +64,15 @@ class User implements UserInterface
      */
     private $roles;
     
-    
+    /**
+     * @var Float 
+     * @ORM\Column(name="balance", type="decimal", precision=10, scale=2)
+     */
+    private $balance;
+            
     public function __construct(){
       $this->roles = new ArrayCollection();
+      $this->balance = 0;
     }
     /**
      * Get id
@@ -112,7 +118,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -125,7 +130,46 @@ class User implements UserInterface
     {
         return $this->email;
     }
+    
+    
+    /**
+     * set balance
+     * @param type $balance
+     * @return \ShopBundle\Entity\User
+     */
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+        return $this;
+    }
 
+    /**
+     * Get balance
+     *
+     * @return decimal
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+    
+    /**
+     *  @return User
+     */
+    public function increaseBalanceBy($amount){
+        $this->balance+=$amount;
+        return $this;
+    }
+    
+     /**
+     *  @return User
+     */
+    public function decreaseBalanceBy($amount){
+        $this->balance-=$amount;
+        return $this;
+    }
+    
+    
     /**
      * Set password
      *
@@ -136,7 +180,6 @@ class User implements UserInterface
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
 
