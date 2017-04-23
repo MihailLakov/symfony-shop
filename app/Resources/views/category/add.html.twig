@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            
+            <h2>Add Category</h2>
+            <div class="well">
+                {{ form_start(addCategoryForm) }}
+                {{ form_widget(addCategoryForm) }}
+                <input type="submit" value="Submit" class="btn btn-lg">
+                {{ form_rest(addCategoryForm) }}
+            {{ form_end(addCategoryForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -56,7 +56,15 @@ class Product
      */
     private $published;
 
-
+    /**
+     * @var int
+     * 
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * 
+     */
+    private $category;
+            
     /**
      * Get id
      *
@@ -185,6 +193,15 @@ class Product
     public function getPublished()
     {
         return $this->published;
+    }
+    
+    public function setCategory($category){
+        $this->category = $category;
+        return $this;
+    }
+    
+    public function getCategory(){
+        return $this->category;
     }
 }
 

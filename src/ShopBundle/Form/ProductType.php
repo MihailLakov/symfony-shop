@@ -9,6 +9,8 @@ use \Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use \Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use \Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use \Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use ShopBundle\Entity\Category;
 class ProductType extends AbstractType
 {
     
@@ -21,6 +23,10 @@ class ProductType extends AbstractType
         $builder->add('stock',IntegerType::class);
         $builder->add('published', CheckboxType::class, array(
             'required' => false
+        ));
+        $builder->add('category', EntityType::class,array(
+             'class' => Category::class,
+             'choice_label' => 'title',
         ));
         
     }
