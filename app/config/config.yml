@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     product_images_dir: '%kernel.root_dir%/../web/images/products'
+    initial_user_balance: 100
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
