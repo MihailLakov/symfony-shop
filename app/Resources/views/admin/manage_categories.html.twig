@@ -1,0 +1,33 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Categories Catalog</h2>
+            </div>
+            <div class="col-xs-12">
+                <a href="{{path('admin-category-create')}}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span>Add Category</a>            
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>                    
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                {% for category in categories %}
+                <tr>
+                    <td>{{category.id}}</td>
+                    <td>{{category.title}}</td>
+                    <td>{{category.description}}</td>                   
+                    <td>  <a href="{{path('admin-category-edit',{id:category.id}) }}"  class="btn btn-info">Edit</a></td>          
+                    <td>  <a href="{{path('admin-category-delete',{id:category.id}) }}"  class="btn btn-danger">Delete</a></td>    
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+           
+        </div>
+    </div>
+{% endblock %}
