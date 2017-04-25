@@ -3,7 +3,8 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use ShopBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Cart
  *
@@ -21,12 +22,18 @@ class Cart
      */
     private $id;
     
-    /**
-     *
-     * @var ArrayCollection
-     * 
+    
+       
+    /**    
+     * @ORM\Column(name="user", type="integer") 
+     * @ORM\OneToOne(targetEntity="User", inversedBy="cart")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $products;
+    private $user;
+    
+    public function __construct() {
+      
+    }
     /**
      * Get id
      *
@@ -35,11 +42,17 @@ class Cart
     public function getId()
     {
         return $this->id;
-    }
+    }   
+    public function getUser()
+    {
+        return $this->user;
+    }  
+    public function setUser($user)
+    {
+       $this->user = $user;
+       return $this;
+    }  
     
-    public function getProducts(){
-        return $this->products;
-    }
     
    
 }

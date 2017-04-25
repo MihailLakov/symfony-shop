@@ -39,6 +39,13 @@ class UserController extends Controller {
         }
         return $this->redirectToRoute('security-login');
     }
+    
+    public function viewCartAction(Request $request){
+        $user = $this->getUser();
+        
+        
+        
+    }
 
     
 

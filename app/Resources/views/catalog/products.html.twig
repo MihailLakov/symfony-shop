@@ -11,6 +11,7 @@
                 <p>Description: {{ product.description }}</p>
                 <p>Price: {{ product.price }}</p>
                 <p>Stock: {{ product.stock }}</p>  
+                <a href="{{path('add-to-cart',{id:product.id})}}">Add to Cart</a>
             </div>
             {% endfor %}
         </div>

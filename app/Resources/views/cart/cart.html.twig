@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{{app.user.name }} , this is your cart</h1>
+            </div>
+            {% for item in cartItems %}
+            <div class="col-xs-12">
+                <h2>{{item.product}}</h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

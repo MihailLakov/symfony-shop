@@ -9,8 +9,9 @@
                 <p>{{ product.description }}</p>
                 <p>Price: {{ product.price }}</p>
                 <p>Stock: {{ product.stock }}</p>   
-                 <p>Category {{ product.category.title }}</p>      
-                 <img class="img-responsive" src="/images/products/{{product.image}}" alt="image">
+                <p>Category {{ product.category.title }}</p>      
+                <img class="img-responsive" src="/images/products/{{product.image}}" alt="image">
+                <a href="{{path('add-to-cart',{id:product.id})}}">Add to Cart</a>
             </div>
         </div>
     </div>

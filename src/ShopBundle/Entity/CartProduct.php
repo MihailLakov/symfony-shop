@@ -3,7 +3,8 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use ShopBundle\Entity\Cart;
 /**
  * CartProduct
  *
@@ -38,7 +39,17 @@ class CartProduct
      */
     private $quantity;
 
-
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="cart_id", type="integer")
+     */
+    private $cartId;
+    
+    
+    public function __construct() {
+        
+    }
     /**
      * Get id
      *
@@ -96,5 +107,19 @@ class CartProduct
     {
         return $this->quantity;
     }
+    
+    public function getCartId(){
+        return $this->cartId;
+    }
+    
+    public function setCartId($id){
+      $this->cartId = $id;
+      return $this;
+    }
+    
+    public function increaseQuantityBy($amount){
+        $this->quantity +=$amount;
+    }
 }
+
 
