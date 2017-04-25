@@ -4,6 +4,7 @@ namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Cart;
 /**
  * CartProduct
@@ -23,9 +24,8 @@ class CartProduct
     private $id;
 
     /**
-     * @var string
+     * @var Product
      *
-     * @ORM\Column(name="product", type="string", length=255)
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */   
@@ -40,11 +40,12 @@ class CartProduct
     private $quantity;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="cart_id", type="integer")
+     * @var Cart
+     * @ORM\ManyToOne(targetEntity="Cart")
+     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
+     * 
      */
-    private $cartId;
+    private $cart;
     
     
     public function __construct() {
@@ -108,12 +109,12 @@ class CartProduct
         return $this->quantity;
     }
     
-    public function getCartId(){
-        return $this->cartId;
+    public function getCart(){
+        return $this->cart;
     }
     
-    public function setCartId($id){
-      $this->cartId = $id;
+    public function setCart($cart){
+      $this->cart = $cart;
       return $this;
     }
     

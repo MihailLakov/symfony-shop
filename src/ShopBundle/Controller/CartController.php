@@ -29,16 +29,17 @@ class CartController extends Controller {
                 $this->get('session')->getFlashBag()->set('error', "No such product");
                 return $this->redirectToRoute('products-catalog');
             }
-            $cart = $this->getDoctrine()->getRepository(Cart::class)->findOneBy(array('user' => $user->getId()));   
-            $cartItem = $this->getDoctrine()->getRepository(CartProduct::class)->findOneBy(array('product' => $product->getId()));
-            
+            $cart = $this->getDoctrine()->getRepository(Cart::class)->findOneBy(array('user' => $user->getId()));              
+           
+            $cartItem = $this->getDoctrine()->getRepository(CartProduct::class)->findOneBy(array('product' => $product->getId()));          
             if(!$cartItem){
                 $cartItem = new CartProduct();
-            } 
-            $cartItem->setCartId($cart->getId());
-            $cartItem->setProduct($product->getId());
+            }           
+            
+            $cartItem->setCart($cart);
+            $cartItem->setProduct($product);
             $cartItem->increaseQuantityBy(1);
-    
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cartItem);
             $em->flush();
@@ -55,7 +56,7 @@ class CartController extends Controller {
     public function showCartAction(){
          $user = $this->getUser();
         $cart = $this->getDoctrine()->getRepository(Cart::class)->findOneBy(array('user' => $user->getId()));  
-        $cartItems = $this->getDoctrine()->getRepository(CartProduct::class)->findBy(array('cartId' => $cart->getId()));
+        $cartItems = $this->getDoctrine()->getRepository(CartProduct::class)->findBy(array('cart' => $cart->getId()));
         
         
         return $this->render('cart/cart.html.twig', array(

@@ -8,7 +8,8 @@
             </div>
             {% for item in cartItems %}
             <div class="col-xs-12">
-                <h2>{{item.product}}</h2>
+                <h2>{{item.product.title}}</h2>
+                <p>qty: {{ item.quantity}}</p>
             </div>
             {% endfor %}
         </div>

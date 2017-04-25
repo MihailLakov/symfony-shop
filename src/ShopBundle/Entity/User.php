@@ -71,11 +71,7 @@ class User implements UserInterface
      */
     private $balance;
     
-    /*
-     * var Integer     
-     * @ORM\OneToOne(targetEntity="Cart", mappedBy="user")
-     */
-    private $cart;
+    
     
     public function __construct(){
       $this->roles = new ArrayCollection();
