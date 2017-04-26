@@ -4,7 +4,7 @@ namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ShopBundle\Entity\CustomerOrder;
-use ShopBundle\Entity\Prouct;
+use ShopBundle\Entity\Product;
 /**
  * OrderProduct
  *

@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use ShopBundle\Entity\CartProduct;
 use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Cart;
-
+use ShopBundle\Entity\OrderProduct;
+use ShopBundle\Entity\CustomerOrder;
+use ShopBundle\Entity\Status;
 class CartController extends Controller {
 
     /**
@@ -96,13 +98,41 @@ class CartController extends Controller {
     
     
     /**
-     * @Route("/cart/checkout, name="checkout-cart")
+     * @Route("/cart/checkout", name="checkout-cart")
      * @method({"POST"})
      * @param Request $request
      * @return Response 
      */
     public function checkoutAction(Request $request){
-        
+         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+             
+            $user = $this->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $order = new CustomerOrder();            
+            $cart = $this->getDoctrine()->getRepository(Cart::class)->findOneBy(array('user' => $user->getId()));
+            $cartItems = $this->getDoctrine()->getRepository(CartProduct::class)->findBy(array('cart' =>$cart));
+            $em->persist($order);
+            $totalPrice = 0;
+            foreach($cartItems as $item){
+                $orderProduct=  new OrderProduct();
+                $orderProduct->setOrder($order);
+                $orderProduct->setPrice($item->getProduct()->getPrice());
+                $orderProduct->setQuantity($item->getQuantity());
+                $orderProduct->setProduct($item->getProduct());
+                $totalPrice +=$item->getProduct()->getPrice();     
+                $em->persist($orderProduct);
+                $em->remove($item);
+            }
+            
+            $order->setUser($user);
+            $order->setTotal($totalPrice);
+            $order->setDateCreated(new \DateTime());
+            $order->setStatus($this->getDoctrine()->getRepository(Status::class)->findOneBy(array('title' =>'processing')));
+           
+            $em->flush();
+            return $this->redirectToRoute('show-cart');
+         } 
+         return $this->redirectToRoute('security-login');
     }
 
 }

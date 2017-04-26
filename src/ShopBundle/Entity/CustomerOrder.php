@@ -31,7 +31,7 @@ class CustomerOrder
     private $user;
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="total", type="decimal", precision=10, scale=2)
      */
