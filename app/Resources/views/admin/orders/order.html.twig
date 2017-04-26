@@ -1,0 +1,50 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>View order # {{order.id}}</h2>
+            </div>
+            <div class="col-xs-12">
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Made By</th>
+                        <th>Date ordered</th>    
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>{{order.user.name}}</td>
+                        <td>{{order.dateCreated |date("m/d/Y") }}</td>
+                        <td>{{order.total}}</td>
+                        <td>{{order.status.title }}</td>                                    
+                        <td>  <a href=""  class="btn btn-danger">Delete orders</a></td>    
+                    </tr>
+                </table>
+                <h2>Products ordered</h2>    
+                <table class="table">
+                    <tr>
+                        <th>Product name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>    
+                        <th>Total</th>                       
+                    </tr>
+                    {% for item in orderProducts %}
+                        <tr>
+                            <td><a href="{{path('admin-product-edit',{id:item.product.id})}}">{{item.product.title}}</a></td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.quantity * item.price }}</td>                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

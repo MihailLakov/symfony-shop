@@ -1,0 +1,35 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Orders</h2>
+            </div>
+            <div class="col-xs-12">
+                           
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Made By</th>
+                        <th>Date ordered</th> 
+                        <th>Status</th>   
+                        <th>Info</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{order.id}}</td>
+                            <td>{{order.user.name}}</td>
+                            <td>{{order.dateCreated |date("m/d/Y") }}</td>
+                            <td>{{order.status.title}}</td>
+                            <td>  <a href="{{ path('admin-orders-show-single',{orderId:order.id})}}"  class="btn btn-info">View details</a></td>          
+                            <td>  <a href=""  class="btn btn-danger">Delete orders</a></td>    
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
