@@ -3,16 +3,25 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            
-            <h2>{{product.title }}</h2>
-            <div class="well">
-                <p>{{ product.description }}</p>
-                <p>Price: {{ product.price }}</p>
-                <p>Stock: {{ product.stock }}</p>   
-                <p>Category {{ product.category.title }}</p>      
-                <img class="img-responsive" src="/images/products/{{product.image}}" alt="image">
-                <a href="{{path('add-to-cart',{id:product.id})}}">Add to Cart</a>
-            </div>
+            <div class="col-xs-12 col-sm-5">
+                <h3>This will be a sidebar</h3>
+            </div>             
+            <div class="col-xs-12 col-sm-7">
+            <form action="{{ path('add-to-cart')}}" method="POST">               
+                <div class="product">                    
+                    <img class="img-responsive product-thumb" src="/images/products/{{ product.image }}" alt="product_thumb">                    
+                    <h3 class="product-title">{{product.title}}  </h3>    
+                    <p>Description: {{product.description}} </p>
+                    <p>Brand: {{product.brand.title}}</p>
+                    <p>Category: {{product.category.title}}</p>
+                    <p>Stock:{{ product.stock}}</p>
+                    <p class="price">{{ product.price }} BGN</p>                
+                    <input type="number"  name="product_quantity" class="form-control" value="1" min="1">
+                    <input type="hidden" value="{{product.id}}" name="product_id">
+                    <button class="btn btn-primary" type="submit">Add to Cart</button>                   
+                </div>
+            </form>
+        </div>
         </div>
     </div>
 {% endblock %}

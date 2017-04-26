@@ -3,9 +3,30 @@
 *
 */
 
+
+
+/** PRODUCT **/
+.product{
+    min-height:380px;
+    padding:10px;
+    border:1px solid #ccc;
+    text-align: center;
+    margin:10px 0;
+}
+.product .product-title a{
+    display:block;
+}
+.product .product-title small{
+    color:#ccc;
+}
+.price{
+    color:#276658;
+}
+/** FOOTER **/
 footer{
     width:100%;   
     background:#313131;
     color:white;
     padding:40px 0;
+    margin-top:80px;
 }
