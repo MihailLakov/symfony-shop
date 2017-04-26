@@ -14,8 +14,7 @@ class ProductController extends Controller {
 
   
      /**
-     * @Route("/admin/product/create", name="admin-product-create")     
-     * @Security("has_role('ROLE_EDITOR')")  
+     * @Route("/admin/product/create", name="admin-product-create")        
      * @param Request $request
      * @return Response 
      */
@@ -49,7 +48,6 @@ class ProductController extends Controller {
     
     /**
      * @Route("/admin/product/edit/{id}/", name="admin-product-edit")
-     * @Security("has_role('ROLE_EDITOR')")
      * @param $request Request
      * @param $id int
      * @return Response

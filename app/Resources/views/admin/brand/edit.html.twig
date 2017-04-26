@@ -1,0 +1,18 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            
+            <h2>Edit Brand</h2>
+            <div class="well">
+                {{ form_start(editBrandForm) }}
+                {{ form_widget(editBrandForm) }}
+                <input type="submit" value="Edit" class="btn btn-lg">
+                <a href="{{path('admin-brand-delete',{id:brandt.id}) }}"  class="btn btn- btn-primary">Delete</a>
+                {{ form_rest(editBrandForm) }}
+            {{ form_end(editBrandForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

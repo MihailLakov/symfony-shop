@@ -4,6 +4,7 @@ namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ShopBundle\Entity\Brand;
 /**
  * Product
  *
@@ -77,6 +78,13 @@ class Product
      *
      * @return int
      */
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Brand")
+     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     * @var Brand 
+     */
+    private $brand;
     public function getId()
     {
         return $this->id;
@@ -236,5 +244,27 @@ class Product
     public function getCategory(){
         return $this->category;
     }
+    
+    /**
+     * Set Brand
+     * @param Brand $brand     
+     * @return Product
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+        return $this;
+    }
+
+    /**
+     * Get brand
+     * @return Brand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+    
+    
 }
 

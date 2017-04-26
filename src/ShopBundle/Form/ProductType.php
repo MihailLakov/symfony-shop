@@ -12,6 +12,7 @@ use \Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use \Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use ShopBundle\Entity\Category;
+use ShopBundle\Entity\Brand;
 class ProductType extends AbstractType
 {
     
@@ -31,6 +32,10 @@ class ProductType extends AbstractType
         ));
         $builder->add('category', EntityType::class,array(
              'class' => Category::class,
+             'choice_label' => 'title',
+        ));
+        $builder->add('brand', EntityType::class,array(
+             'class' => Brand::class,
              'choice_label' => 'title',
         ));
         

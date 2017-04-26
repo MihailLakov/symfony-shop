@@ -8,29 +8,32 @@
             </div>
             <div class="col-xs-12">
                 <a href="{{path('admin-product-create')}}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span>Add product</a>            
-            <table class="table">
+            <table class="table table-striped ">
                 <tr>
                     <th>ID</th>
                     <th>Product</th>
                     <th>Description</th>
+                    <th>Category</th>
+                    <th>Brand</th>
                     <th>Price</th>
                     <th>Stock</th>
                     <th>Image</th>
                     <th>Published</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Action</th>                    
                 </tr>
                 {% for product in products %}
                 <tr>
                     <td>{{product.id}}</td>
                     <td>{{product.title}}</td>
                     <td>{{product.description}}</td>
+                    <td>{{product.category.title}}</td>
+                    <td>{{product.brand.title}}</td>
                     <td>{{product.price}}</td>
                     <td>{{product.stock}}</td>
                     <td> <img class="img-responsive" src="{{product.image}}" alt="image"></td>
                     <td>{{product.published}}</td>            
-                    <td>  <a href="{{path('admin-product-edit',{id:product.id}) }}"  class="btn btn-info">Edit</a></td>          
-                    <td>  <a href="{{path('admin-product-delete',{id:product.id}) }}"  class="btn btn-danger">Delete</a></td>    
+                    <td>  <a href="{{path('admin-product-edit',{id:product.id}) }}"  class="btn btn-info">Edit</a>         
+                    <a href="{{path('admin-product-delete',{id:product.id}) }}"  class="btn btn-danger">Delete</a></td>    
                 </tr>
                 {% endfor %}
             </table>

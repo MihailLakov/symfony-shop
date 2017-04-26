@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ShopBundle\Entity\Product;
+use ShopBundle\Entity\Brand;
 use ShopBundle\Entity\Category;
 class DefaultController extends Controller
 {
@@ -44,6 +45,21 @@ class DefaultController extends Controller
         
         return $this->render('admin/manage_categories.html.twig', array(
             'categories'=>$categories
+        ));    
+   
+    }
+    
+    /**
+     * @Route("/admin/brands", name="admin-manage-brands")
+     * 
+     */
+    public function adminManageBrandsAction()
+    {
+        $repo = $this->getDoctrine()->getRepository(Brand::class);        
+        $brands = $repo->findAll();
+        
+        return $this->render('admin/manage_brands.html.twig', array(
+            'brands'=>$brands
         ));    
    
     }
