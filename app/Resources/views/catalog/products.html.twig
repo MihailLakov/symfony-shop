@@ -7,11 +7,16 @@
             <h2>Products Catalog</h2>
             {% for product in products %}
             <div class="well">
-                <h3>{{product.title}}</h3>
-                <p>Description: {{ product.description }}</p>
-                <p>Price: {{ product.price }}</p>
-                <p>Stock: {{ product.stock }}</p>  
-                <a href="{{path('add-to-cart',{id:product.id})}}">Add to Cart</a>
+                <form action="{{ path('add-to-cart')}}" method="POST">
+                    
+                    <h3>{{product.title}}</h3>
+                    <p>Description: {{ product.description }}</p>
+                    <p>Price: {{ product.price }}</p>
+                    <p>Stock: {{ product.stock }}</p>  
+                    <input type="number" class="form-control" name="product_quantity" value="1">
+                    <input type="hidden" value="{{product.id}}" name="product_id">
+                    <button class="btn btn-primary" type="submit">Add to Cart</button>
+                </form>
             </div>
             {% endfor %}
         </div>
