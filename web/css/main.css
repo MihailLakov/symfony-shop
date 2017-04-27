@@ -3,8 +3,55 @@
 *
 */
 
+/** HEADER **/
 
+.topbar{
+    background: #3f3e3e;
+    width:100%;
+}
+.topbar ul {
+    padding:0;
+    margin:0;
+}
+.topbar ul li{
+    display:inline-block;
+    list-style:none;
+     padding:10px;
+}
+.topbar ul li a{
+    color:white;
+    padding:10px;
+}
+header{
+    background:url('../images/header-background.jpg');
+}
+header nav{
+    font-size:18px;
+}
 
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+    color:white;
+    background:#33cccc;
+    transition: all 0.2s ease;
+}
+
+header .header-main{
+    margin:40px 0;
+}
+header h1.logo{
+    text-align: center;
+    font-size:60px;
+    margin:0 auto;
+    color:white;
+    font-weight:bold;   
+letter-spacing: 3px;
+text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+}
+header .navbar{
+        margin-bottom: 0px; 
+     border: none;
+     border-radius:0px;
+}
 /** PRODUCT **/
 .product{
     min-height:380px;
