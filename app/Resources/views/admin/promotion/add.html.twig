@@ -1,0 +1,17 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            
+            <h2>Add Promotion</h2>
+            <div class="well">
+                {{ form_start(addPromotionForm) }}
+                {{ form_widget(addPromotionForm) }}
+                <input type="submit" value="Submit" class="btn btn-lg">
+                {{ form_rest(addPromotionForm) }}
+            {{ form_end(addPromotionForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

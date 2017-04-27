@@ -1,0 +1,18 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            
+            <h2>Edit Promotion</h2>
+            <div class="well">
+                {{ form_start(editPromotionForm) }}
+                {{ form_widget(editPromotionForm) }}
+                <input type="submit" value="Edit" class="btn btn-lg">
+                <a href="{{path('admin-promotion-delete',{id:promotion.id}) }}"  class="btn btn- btn-primary">Delete</a>
+                {{ form_rest(editPromotionForm) }}
+            {{ form_end(editPromotionForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

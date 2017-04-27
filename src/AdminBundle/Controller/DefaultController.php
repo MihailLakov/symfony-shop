@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Brand;
 use ShopBundle\Entity\Category;
+use ShopBundle\Entity\Promotion;
 class DefaultController extends Controller
 {
     /**
@@ -60,6 +61,20 @@ class DefaultController extends Controller
         
         return $this->render('admin/manage_brands.html.twig', array(
             'brands'=>$brands
+        ));    
+   
+    }
+    
+    /**
+     * @Route("/admin/promotions", name="admin-manage-promotions")
+     */
+    public function adminManagePromotionsAction()
+    {
+        $repo = $this->getDoctrine()->getRepository(Promotion::class);        
+        $promotions = $repo->findAll();
+        
+        return $this->render('admin/manage_promotions.html.twig', array(
+            'promotions'=>$promotions
         ));    
    
     }

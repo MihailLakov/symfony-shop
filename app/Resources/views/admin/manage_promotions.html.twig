@@ -1,0 +1,36 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Promotions Catalog</h2>
+            </div>
+            <div class="col-xs-12">
+                <a href="{{path('admin-promotion-create')}}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span>Add Promotion</a>            
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Percentage</th>
+                    <th>Start Date</th>                    
+                    <th>End Date</th>
+                     <th>Product</th>
+                    <th>Action</th>
+                </tr>
+                {% for promotion in promotions %}
+                <tr>
+                    <td>{{promotion.id}}</td>
+                    <td>{{promotion.percentage}}</td>
+                    <td>{{promotion.startDate | date("m/d/Y") }}</td>                   
+                    <td>{{promotion.endDate | date("m/d/Y") }}</td>        
+                     <td>{{promotion.product.title}}</td>
+                    <td>  <a href="{{path('admin-promotion-edit',{id:promotion.id}) }}"  class="btn btn-info">Edit</a>     
+                    <a href="{{path('admin-promotion-delete',{id:promotion.id}) }}"  class="btn btn-danger">Delete</a></td>    
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+           
+        </div>
+    </div>
+{% endblock %}
