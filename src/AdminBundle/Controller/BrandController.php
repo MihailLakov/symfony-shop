@@ -1,7 +1,7 @@
 <?php
 
 namespace AdminBundle\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,8 @@ class BrandController extends Controller {
 
   
      /**
-     * @Route("/admin/brand/create", name="admin-brand-create") 
+     * @Route("/admin/brand/create", name="admin-brand-create")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param Request $request
      * @return Response 
      */
@@ -37,6 +38,7 @@ class BrandController extends Controller {
     
     /**
      * @Route("/admin/brand/edit/{id}/", name="admin-brand-edit")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response
@@ -65,6 +67,7 @@ class BrandController extends Controller {
     
      /**
      * @Route("/admin/brand/delete/{id}/", name="admin-brand-delete")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response

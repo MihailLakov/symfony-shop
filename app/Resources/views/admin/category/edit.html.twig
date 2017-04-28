@@ -9,7 +9,7 @@
                 {{ form_start(editCategoryForm) }}
                 {{ form_widget(editCategoryForm) }}
                 <input type="submit" value="Edit" class="btn btn-lg">
-                <a href="{{path('admin-category-delete',{id:product.id}) }}"  class="btn btn- btn-primary">Delete</a>
+                <a href="{{path('admin-category-delete',{id:category.id}) }}"  class="btn btn- btn-primary">Delete</a>
                 {{ form_rest(editCategoryForm) }}
             {{ form_end(editCategoryForm) }}
             </div>

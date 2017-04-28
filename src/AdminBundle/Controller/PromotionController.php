@@ -1,7 +1,7 @@
 <?php
 
 namespace AdminBundle\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +14,7 @@ class PromotionController extends Controller {
   
      /**
      * @Route("/admin/promotion/create", name="admin-promotion-create") 
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param Request $request
      * @return Response 
      */
@@ -38,6 +39,7 @@ class PromotionController extends Controller {
     
     /**
      * @Route("/admin/promotion/edit/{id}/", name="admin-promotion-edit")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response
@@ -69,6 +71,7 @@ class PromotionController extends Controller {
     
      /**
      * @Route("/admin/promotion/delete/{id}/", name="admin-promotion-delete")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response

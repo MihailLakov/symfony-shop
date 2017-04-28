@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default">
         <div class="container-fluid">          
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -7,19 +7,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{path('homepage')}}">Awesome Shop</a>
+                </button>                
             </div>           
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{path('homepage')}}">Store Front</a></li>
-                    <li><a href="{{path('admin-manage-products')}}">Manage Products</a></li>
-                    <li><a href="{{path('admin-manage-categories')}}">Manage Categories</a></li>
-                     <li><a href="{{path('admin-manage-brands')}}">Manage Brands</a></li>                   
+                    <li><a href="{{path('admin-manage-products')}}">Products</a></li>
+                    <li><a href="{{path('admin-manage-categories')}}">Categories</a></li>
+                    <li><a href="{{path('admin-manage-brands')}}">Brands</a></li>    
+                    <li><a href="{{path('admin-manage-brands')}}">Orders</a></li>        
                     <li><a href="{{path('security-logout')}}">Logout</a></li>
 
-                </ul>              
-
+                </ul>     
             </div>
         </div>
     </nav>
@@ -28,15 +27,15 @@
     {% for flashMessage in app.session.flashbag.get('error') %}
         <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
     {% endfor %}
-    
+
     {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
     {% endfor %}
-    
+
     {% for flashMessage in app.session.flashbag.get('info') %}
         <div class="alert alert-info" role="alert">{{ flashMessage }}</div>
     {% endfor %}
-    
+
     {% for flashMessage in app.session.flashbag.get('warning') %}
         <div class="alert alert-warning" role="alert">{{ flashMessage }}</div>
     {% endfor %}    

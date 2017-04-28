@@ -14,7 +14,8 @@ class ProductController extends Controller {
 
   
      /**
-     * @Route("/admin/product/create", name="admin-product-create")        
+     * @Route("/admin/product/create", name="admin-product-create")    
+     * @Security("has_role('ROLE_EDITOR')")     
      * @param Request $request
      * @return Response 
      */
@@ -26,8 +27,6 @@ class ProductController extends Controller {
         
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            
-            
             $image = $product->getImage();        
             if($image instanceof UploadedFile){
                 $imageName = md5(uniqid()).'.' . $image->guessExtension();            
@@ -48,6 +47,7 @@ class ProductController extends Controller {
     
     /**
      * @Route("/admin/product/edit/{id}/", name="admin-product-edit")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response
@@ -86,7 +86,7 @@ class ProductController extends Controller {
     }   
     
      /**
-     * @Route("/admin/product/delete/{id}/", name="admin-product-delete")
+     * @Route("/admin/product/delete/{id}/", name="admin-product-delete") 
      * @Security("has_role('ROLE_EDITOR')")
      * @param $request Request
      * @param $id int

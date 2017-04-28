@@ -14,7 +14,7 @@ class OrdersController extends Controller
 {
     /**
      * @Route("/admin/orders", name="admin-orders-show")
-     * 
+     * @Security("has_role('ROLE_ADMIN)") 
      */
     public function listOrdersAction(Request $request)
     {
@@ -26,6 +26,7 @@ class OrdersController extends Controller
     }
      /**
      * @Route("/admin/orders/single/{orderId}", name="admin-orders-show-single")
+     * @Security("has_role('ROLE_ADMIN')") 
      * @param $orderId int
      */
     public function showSingleOrderAction(Request $request,$orderId)

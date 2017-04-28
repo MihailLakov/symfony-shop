@@ -1,7 +1,7 @@
 <?php
 
 namespace AdminBundle\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +13,7 @@ class CategoryController extends Controller {
   
      /**
      * @Route("/admin/category/create", name="admin-category-create") 
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param Request $request
      * @return Response 
      */
@@ -37,6 +38,7 @@ class CategoryController extends Controller {
     
     /**
      * @Route("/admin/category/edit/{id}/", name="admin-category-edit")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response
@@ -68,6 +70,7 @@ class CategoryController extends Controller {
     
      /**
      * @Route("/admin/category/delete/{id}/", name="admin-category-delete")
+     * @Security("has_role('ROLE_EDITOR')") 
      * @param $request Request
      * @param $id int
      * @return Response

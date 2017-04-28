@@ -9,11 +9,12 @@ use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Brand;
 use ShopBundle\Entity\Category;
 use ShopBundle\Entity\Promotion;
+use ShopBundle\Entity\CustomerOrder;
 class DefaultController extends Controller
 {
     /**
      * @Route("/admin", name="admin-homepage")
-     * 
+     * @Security("has_role('ROLE_EDITOR')") 
      */
     public function adminIndexAction()
     {
@@ -22,7 +23,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/admin/products", name="admin-manage-products")
-     * 
+     * @Security("has_role('ROLE_EDITOR')") 
      */
     public function adminManageProductsAction()
     {
@@ -37,7 +38,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/admin/categories", name="admin-manage-categories")
-     * 
+     * @Security("has_role('ROLE_EDITOR')") 
      */
     public function adminManageCategoriesAction()
     {
@@ -52,7 +53,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/admin/brands", name="admin-manage-brands")
-     * 
+     * @Security("has_role('ROLE_EDITOR')") 
      */
     public function adminManageBrandsAction()
     {
@@ -67,6 +68,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/admin/promotions", name="admin-manage-promotions")
+     * @Security("has_role('ROLE_EDITOR')") 
      */
     public function adminManagePromotionsAction()
     {
@@ -75,6 +77,21 @@ class DefaultController extends Controller
         
         return $this->render('admin/manage_promotions.html.twig', array(
             'promotions'=>$promotions
+        ));    
+   
+    }
+    
+    /**
+     * @Route("/admin/orders", name="admin-manage-orders")
+     * @Security("has_role('ROLE_ADMIN')") 
+     */
+    public function adminManageOrdersAction()
+    {
+        $repo = $this->getDoctrine()->getRepository(CustomerOrder::class);        
+        $orders = $repo->findAll();
+        
+        return $this->render('admin/manage_orders.html.twig', array(
+            'orders'=>$orders
         ));    
    
     }
