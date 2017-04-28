@@ -10,8 +10,9 @@ class CategoryType extends AbstractType
 {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('title',TextType::class);
-        $builder->add('description',  TextareaType::class);
+        $builder
+                ->add('title',TextType::class)
+                ->add('description',  TextareaType::class);
     }
     
     public function configureOptions(OptionsResolver $resolver){
