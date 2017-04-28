@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Category;
 use ShopBundle\Entity\PromotionType;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Promotion
  *
@@ -25,7 +26,8 @@ class Promotion
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(1)
      * @ORM\Column(name="percentage", type="integer")
      */
     private $percentage;

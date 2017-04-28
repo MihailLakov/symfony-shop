@@ -3,6 +3,7 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -23,7 +24,7 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;

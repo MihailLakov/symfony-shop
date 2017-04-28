@@ -24,10 +24,10 @@
                 {% for product in products %}
                 <tr>
                     <td>{{product.id}}</td>
-                    <td>{{product.title}}</td>
+                    <td><a href="{{path('admin-product-edit',{id:product.id}) }}">{{product.title}}</a></td>
                     <td>{{product.description}}</td>
-                    <td>{{product.category.title}}</td>
-                    <td>{{product.brand.title}}</td>
+                    <td><a href="{{path('admin-category-edit',{id:product.category.id}) }}">{{product.category.title}}</a></td>
+                    <td><a href="{{path('admin-brand-edit',{id:product.brand.id}) }}">{{product.brand.title}}</a></td>
                     <td>{{product.price}}</td>
                     <td>{{product.stock}}</td>
                     <td> <img class="img-responsive" src="/images/products/{{product.image}}" alt="image"></td>

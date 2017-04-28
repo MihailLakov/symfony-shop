@@ -23,7 +23,7 @@
                     <td>{{promotion.percentage}}</td>
                     <td>{{promotion.startDate | date("m/d/Y") }}</td>                   
                     <td>{{promotion.endDate | date("m/d/Y") }}</td>        
-                     <td>{{promotion.product.title}}</td>
+                    <td> <a href="{{path('admin-product-edit',{id:promotion.product.id}) }}">{{promotion.product.title}}</a></td>
                     <td>  <a href="{{path('admin-promotion-edit',{id:promotion.id}) }}"  class="btn btn-info">Edit</a>     
                     <a href="{{path('admin-promotion-delete',{id:promotion.id}) }}"  class="btn btn-danger">Delete</a></td>    
                 </tr>

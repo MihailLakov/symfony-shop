@@ -25,28 +25,28 @@ class Product
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var string
-     *
+     * @Assert\GreaterThan(1)
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
      */
     private $price;
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThanOrEqual(0)
      * @ORM\Column(name="stock", type="integer")
      */
     private $stock;
@@ -60,7 +60,7 @@ class Product
 
     /**
      * @var int
-     * 
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * 

@@ -9,7 +9,7 @@
                 {{ form_start(editBrandForm) }}
                 {{ form_widget(editBrandForm) }}
                 <input type="submit" value="Edit" class="btn btn-lg">
-                <a href="{{path('admin-brand-delete',{id:brandt.id}) }}"  class="btn btn- btn-primary">Delete</a>
+                <a href="{{path('admin-brand-delete',{id:brand.id}) }}"  class="btn btn- btn-primary">Delete</a>
                 {{ form_rest(editBrandForm) }}
             {{ form_end(editBrandForm) }}
             </div>

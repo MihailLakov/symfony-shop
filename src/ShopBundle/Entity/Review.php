@@ -4,6 +4,7 @@ namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ShopBundle\Entity\Product;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Review
  *
@@ -23,14 +24,14 @@ class Review
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="content", type="text")
      */
     private $content;
