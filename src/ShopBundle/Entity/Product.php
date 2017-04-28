@@ -5,6 +5,7 @@ namespace ShopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ShopBundle\Entity\Brand;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Product
  *

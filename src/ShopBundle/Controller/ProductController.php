@@ -22,4 +22,15 @@ class ProductController extends Controller {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         return $this->render('product/product.html.twig', array('product' => $product));        
     }
+    
+    /**
+     * @Route("/product/template/{$id}", name="single-product-template")
+     * @param Product $product
+     * @return Response
+     */
+    public function singleProductTemplateAction(Product $product){    
+        return $this->render('product/single_product.html.twig',array(
+            'product' => $product
+        ));
+    }
 }

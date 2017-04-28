@@ -11,20 +11,7 @@
                 <div class="row">
                     {% for product in latest_products %}
                         <div class="col-xs-12 col-md-4">
-                            <form action="{{ path('add-to-cart')}}" method="POST">               
-                                <div class="product">                    
-                                    <img class="img-responsive product-thumb" src="/images/products/{{ product.image }}" alt="product_thumb">                    
-                                    <h3 class="product-title">
-                                        <a href="{{path('view-product',{id:product.id}) }}">{{product.title}}</a>
-                                        <small>{{product.brand.title}}</small>
-                                    </h3>                 
-                                    <p class="price">{{ product.price }} BGN</p>                
-                                    <input type="hidden"  name="product_quantity" value="1">
-                                    <input type="hidden" value="{{product.id}}" name="product_id">
-                                    <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
-                                    <a href="{{path('view-product',{id:product.id}) }}" class="btn btn-info"><span class="glyphicon glyphicon-info-sign"></span>More Info</a>
-                                </div>
-                            </form>
+                            {{ render(controller('ShopBundle:Product:singleProductTemplate', {'id': product.id})) }}
                         </div>
                     {% endfor%}
                 </div>
