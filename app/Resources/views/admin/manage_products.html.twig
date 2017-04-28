@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2>Products Catalog</h2>
+                <h2>Manage Products</h2>
             </div>
             <div class="col-xs-12">
                 <a href="{{path('admin-product-create')}}" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span>Add product</a>            
-            <table class="table table-striped">
+            <table class="table table-striped table-cart">
                 <tr>
                     <th>ID</th>
                     <th>Product</th>
@@ -30,7 +30,7 @@
                     <td>{{product.brand.title}}</td>
                     <td>{{product.price}}</td>
                     <td>{{product.stock}}</td>
-                    <td> <img class="img-responsive" src="{{product.image}}" alt="image"></td>
+                    <td> <img class="img-responsive" src="/images/products/{{product.image}}" alt="image"></td>
                     <td>{{product.published}}</td>            
                     <td>  <a href="{{path('admin-product-edit',{id:product.id}) }}"  class="btn btn-info">Edit</a>         
                     <a href="{{path('admin-product-delete',{id:product.id}) }}"  class="btn btn-danger">Delete</a></td>    

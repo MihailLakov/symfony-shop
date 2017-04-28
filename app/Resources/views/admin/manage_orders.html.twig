@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2>Orders</h2>
+                <h2>Manage Orders</h2>
             </div>
             <div class="col-xs-12">
                            
-                <table class="table">
+                <table class="table table-striped table-cart">
                     <tr>
                         <th>ID</th>
-                        <th>Made By</th>
+                        <th>Customer</th>
                         <th>Date ordered</th> 
                         <th>Status</th>   
                         <th>Info</th>
@@ -20,7 +20,7 @@
                     {% for order in orders %}
                         <tr>
                             <td>{{order.id}}</td>
-                            <td>{{order.user.name}}</td>
+                            <td><a href="{{path('admin-user-edit',{id:order.user.id}) }}"> {{order.user.name}}</a></td>
                             <td>{{order.dateCreated |date("m/d/Y") }}</td>
                             <td>{{order.status.title}}</td>
                             <td>  <a href="{{ path('admin-orders-show-single',{orderId:order.id})}}"  class="btn btn-info">View details</a></td>          

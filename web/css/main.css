@@ -10,6 +10,30 @@ h1,h2,h3,h4,h5{
     text-align: center;
     font-size:16px;
 }
+
+/** TABLES **/
+.table-cart {
+    margin:10px 0;
+}
+.table-cart img{
+    max-height:100px;
+    width:auto;
+}
+.table-cart input[type="number"]{
+    max-width:120px;
+}
+.table-cart th{
+    background-color:#3f3e3e;
+    border-top:none;
+    color:white;    
+    font-weight:lighter;
+    font-size:18px;
+     text-align:center; 
+}
+.table-cart td{
+      text-align:center; 
+}
+
 /** HEADER **/
 
 .topbar{
@@ -23,7 +47,7 @@ h1,h2,h3,h4,h5{
 .topbar ul li{
     display:inline-block;
     list-style:none;
-     padding:10px;
+    padding:10px;
 }
 .topbar ul li a{
     color:white;
@@ -56,13 +80,13 @@ header h1.logo{
     margin:0 auto;
     color:white;
     font-weight:bold;   
-letter-spacing: 3px;
-text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+    letter-spacing: 3px;
+    text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
 }
 header .navbar{
-        margin-bottom: 0px; 
-     border: none;
-     border-radius:0px;
+    margin-bottom: 0px; 
+    border: none;
+    border-radius:0px;
 }
 
 /** HOMEPAGE **/

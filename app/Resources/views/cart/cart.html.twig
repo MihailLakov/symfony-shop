@@ -4,29 +4,34 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>{{app.user.name }} , this is your shopping cart</h1>
+                <h1>{{app.user.name }}, your shopping cart</h1>
             </div>
             <div class="col-xs-12">
-                <table class="table">
+                <table class="table table-cart">
                     <tr>
                         <th>Product</th>
-                        <th>Quantity</th>
                         <th>Image</th>
+                        <th>Quantity</th>
+
                         <th>Price</th>
                         <th>Update</th>
                         <th>Remove</th>
                     </tr>
                     {% for item in cartItems %}
-
                         <tr>
                         <form action="{{path('update-cart')}}" method="POST">
-                            <td>{{item.product.title}}</td>  
+                            <td>
+                                <h4>
+                                    <a href="{{path('view-product',{id:item.product.id}) }}">{{item.product.title}}</a>
+                                </h4>
+                            </td> 
+                            <td> <div class="img-responsive"><img src="/images/products/{{ item.product.image}}"></div></td>
+
                             <td> <input type="number" class="form-control" name="product_quantity" value="{{ item.quantity}}"></td>
                             <td> {{ item.product.price}}</td>
-                            <td> <div class="img-responsive"><img src="/images/products/{{ item.product.image}}"></div></td>
                             <input type="hidden" value="{{item.product.id}}" name="product_id">
-                            <td><button type="submit" value="update" name="update">Update</button></td>
-                            <td><button type="submit" value="delete" name="delete">Delete</button></td>
+                            <td><button type="submit" value="update" name="update" class="btn btn-primary">Update</button></td>
+                            <td><button type="submit" value="delete" name="delete" class="btn btn-danger">Delete</button></td>
                         </form>
                         </tr>
                     {% endfor %}
