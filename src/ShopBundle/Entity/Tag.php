@@ -3,7 +3,7 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use ShopBundle\Entity\Product;
 /**
  * Tag
  *
@@ -28,7 +28,17 @@ class Tag
      */
     private $name;
 
-
+     /**
+     * @var Product[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="tags")
+     */
+    private $products;
+    
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -61,6 +71,24 @@ class Tag
     public function getName()
     {
         return $this->name;
+    }
+    
+    
+    /**
+     * @return Product[]|ArrayCollection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param ArrayCollection $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+        return $this;
     }
 }
 

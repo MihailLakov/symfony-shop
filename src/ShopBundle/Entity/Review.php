@@ -3,7 +3,7 @@
 namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use ShopBundle\Entity\Product;
 /**
  * Review
  *
@@ -34,8 +34,19 @@ class Review
      * @ORM\Column(name="content", type="text")
      */
     private $content;
-
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreated", type="datetime")
+     */
+    private $dateAdded;
+    /**
+     * @var Product
+     *
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="reviews")
+     */
+    private $product;
+    
     /**
      * Get id
      *
@@ -92,6 +103,32 @@ class Review
     public function getContent()
     {
         return $this->content;
+    }
+    
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
+    }
+    
+    
+    public function getDateAdded(){
+        return $this->dateAdded;
+    }
+    
+    public function setDateAdded($date){
+        $this->dateAdded = $date;
+        return $this;
     }
 }
 

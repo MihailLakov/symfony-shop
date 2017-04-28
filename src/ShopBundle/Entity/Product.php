@@ -85,6 +85,24 @@ class Product
      * @var Brand 
      */
     private $brand;
+    
+     /**
+     * @var Review[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="ShopBundle\Entity\Review", mappedBy="product")
+     */
+    private $reviews;
+
+    /**
+     * @var Tag[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="ShopBundle\Entity\Tag")
+     * @ORM\JoinTable(name="product_tags", joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")})
+     */
+    private $tags;
+    public function __construct() {
+        $this->reviews = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+    }
     public function getId()
     {
         return $this->id;
@@ -264,7 +282,37 @@ class Product
     {
         return $this->brand;
     }
-    
+    /**
+     * @return Review[]|ArrayCollection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param Review[]|ArrayCollection $reviews
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+    }
+
+    /**
+     * @return Tag[]|ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
     
 }
 

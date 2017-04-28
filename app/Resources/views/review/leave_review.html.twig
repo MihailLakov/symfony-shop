@@ -1,0 +1,4 @@
+{{ form_start(reviewForm,{'action': path('leave-review-process', {'id': product.id})}) }}
+{{ form_widget(reviewForm) }}
+<button type="submit" class="btn btn-primary"> Submit review</button>
+{{ form_end(reviewForm) }}
