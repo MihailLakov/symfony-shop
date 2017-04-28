@@ -7,7 +7,9 @@
                     <li><a href="{{path('security-register')}}">Register</a></li>
                     <li><a href="{{path('user-profile')}}">Profile</a></li>  
                     <li><a href="{{path('show-cart')}}">Cart</a></li>  
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li><a href="{{path('security-logout')}}">Logout</a></li>
+                    {%endif%}
                 </ul>
             </div>
         </div>
@@ -24,8 +26,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
-                        </button>
-                        
+                        </button>                        
                     </div>           
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">

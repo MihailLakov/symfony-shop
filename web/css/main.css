@@ -8,6 +8,7 @@ h1,h2,h3,h4,h5{
 }
 .notifications{
     text-align: center;
+    font-size:16px;
 }
 /** HEADER **/
 
@@ -27,6 +28,11 @@ h1,h2,h3,h4,h5{
 .topbar ul li a{
     color:white;
     padding:10px;
+}
+.topbar ul li a:hover{
+    color:#33cccc;
+    transition: all 0.3s ease;
+    text-decoration:none;
 }
 header{
     background:url('../images/header-background.jpg');
@@ -71,6 +77,11 @@ header .navbar{
     border:1px solid #ccc;
     text-align: center;
     margin:10px 0;
+    font-size:16px;
+}
+.product .product-title{
+    margin:20px;
+    font-size:28px;
 }
 .product .product-title a{
     display:block;
@@ -78,8 +89,23 @@ header .navbar{
 .product .product-title small{
     color:#ccc;
 }
+.product input[type="number"]{
+    display:inline-block;
+    max-width:100px;
+    margin-top:2px;
+}
 .price{
     color:#276658;
+    font-size:18px;
+}
+.product-review{
+    text-align: left;
+}
+.product-review h4{
+    text-align: left;
+}
+.product-review small{
+    font-style: italic;
 }
 /** FOOTER **/
 footer{

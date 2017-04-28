@@ -2,35 +2,45 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-5">
-                <h3>This will be a sidebar</h3>
-            </div>             
-            <div class="col-xs-12 col-sm-7">
-                <form action="{{ path('add-to-cart')}}" method="POST">               
-                    <div class="product">                    
-                        <img class="img-responsive product-thumb" src="/images/products/{{ product.image }}" alt="product_thumb">                    
-                        <h3 class="product-title">{{product.title}}  </h3>    
-                        <p>Description: {{product.description}} </p>
-                        <p>Brand: {{product.brand.title}}</p>
-                        <p>Category: {{product.category.title}}</p>
-                        <p>Stock:{{ product.stock}}</p>
-                        <p class="price">{{ product.price }} BGN</p>                
-                        <input type="number"  name="product_quantity" class="form-control" value="1" min="1">
-                        <input type="hidden" value="{{product.id}}" name="product_id">
-                        <button class="btn btn-primary" type="submit">Add to Cart</button>                   
+        <div class="row">                      
+            <div class="col-xs-12 col-md-10 col-md-push-1">  
+
+                <div class="product"> 
+                    <div class="row">
+                        <div class="col-xs-12 col-md-5">
+                            <img class="img-responsive product-thumb" src="/images/products/{{ product.image }}" alt="product_thumb">     
+                        </div>
+                        <div class="col-xs-12 col-md-7">
+                            <form action="{{ path('add-to-cart')}}" method="POST">               
+
+                                <h3 class="product-title">{{product.title}}  </h3>    
+                                <p><strong>Description: </strong>{{product.description}} </p>
+                                <p><strong>Brand:</strong> {{product.brand.title}}</p>
+                                <p><strong>Category:</strong> {{product.category.title}}</p>
+                                <p><strong>Stock:</strong>{{ product.stock}}</p>
+                                <p class="price">{{ product.price }} BGN</p>                
+                                <input type="number"  name="product_quantity" class="form-control" value="1" min="1">
+                                <input type="hidden" value="{{product.id}}" name="product_id">
+                                <button class="btn btn-primary" type="submit">Add to Cart</button>                   
+
+                            </form>
+                        </div>
                     </div>
-                </form>
-                <h3> Customer Reviews:                    </h3>
-                {% for review in product.reviews %}
-                    <strong>{{ review.title }}</strong> 
-                    <p> {{review.content }}</p>
-                    <small>added: {{review.dateAdded | date("m/d/Y") }} </small>
-                {% endfor %}
-                <h3>Share your oppinion?</h3>
+
+                </div>
+                {% if product.reviews is not empty %}
+                    <h3> Customer Reviews:  </h3>
+                    {% for review in product.reviews %}
+                        <div class="well product-review">
+                            <h4>{{ review.title }}</h4> 
+                            <p> {{review.content }}</p>
+                            <small>added: {{review.dateAdded | date("m/d/Y") }} </small>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <h3>Share your opinion?</h3>
                 {{ render(controller('ShopBundle:Review:leaveReviewForm', {'id': product.id})) }}
             </div>
-
         </div>
     </div>
 {% endblock %}
