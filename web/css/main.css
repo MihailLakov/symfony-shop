@@ -52,6 +52,12 @@ header .navbar{
      border: none;
      border-radius:0px;
 }
+
+/** HOMEPAGE **/
+
+.carousel .item{
+    max-height:400px;
+}
 /** PRODUCT **/
 .product{
     min-height:380px;

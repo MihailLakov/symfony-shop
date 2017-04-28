@@ -4,6 +4,8 @@ namespace ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ShopBundle\Entity\Product;
+use ShopBundle\Entity\Category;
+use ShopBundle\Entity\PromotionType;
 /**
  * Promotion
  *
@@ -50,7 +52,23 @@ class Promotion
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private $product;
-
+    
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+    
+    
+    /**
+     * @var PromotionType
+     *
+     * @ORM\ManyToOne(targetEntity="PromotionType")
+     * @ORM\JoinColumn(name="promotiontype_id", referencedColumnName="id")
+     */
+    private $promotionType;
     /**
      * Get id
      *
@@ -140,6 +158,15 @@ class Promotion
     
     public function getProduct(){
         return $this->product;
+    }
+    
+     public function setCategory($category){
+        $this->category = $category;
+        return $this;
+    }
+    
+    public function getCategory(){
+        return $this->category;
     }
 }
 
