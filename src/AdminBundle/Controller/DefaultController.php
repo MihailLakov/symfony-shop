@@ -19,7 +19,16 @@ class DefaultController extends Controller
      */
     public function adminIndexAction()
     {
-        return $this->render('admin/index.html.twig');
+        $usersCount = $this->container->get('app.stats_generator')->getTotalNumberOfUsersAction();
+        $categoriesCount = $this->container->get('app.stats_generator')->getTotalNumberOfCategoriesAction();
+        $productsCount = $this->container->get('app.stats_generator')->getTotalNumberOfProductsAction();
+        $ordersCount = $this->container->get('app.stats_generator')->getTotalNumberOfOrdersAction();
+        return $this->render('admin/index.html.twig', array(
+            'usersCount' => $usersCount,
+            'categoriesCount' => $categoriesCount,
+            'productsCount' => $productsCount,
+            'ordersCount' => $ordersCount
+        ));
     }
     
     /**
