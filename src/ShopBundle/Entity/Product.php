@@ -95,7 +95,7 @@ class Product
     /**
      * @var Tag[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="ShopBundle\Entity\Tag")
+     * @ORM\ManyToMany(targetEntity="ShopBundle\Entity\Tag", inversedBy="products")
      * @ORM\JoinTable(name="product_tags", joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")})
      */
     private $tags;

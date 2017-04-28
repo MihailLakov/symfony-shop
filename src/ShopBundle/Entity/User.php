@@ -1,19 +1,22 @@
 <?php
 
 namespace ShopBundle\Entity;
+
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-use ShopBundle\Entity\Cart;
+;
+
 /**
  * User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="ShopBundle\Repository\UserRepository")
  */
-class User implements UserInterface
-{
+class User implements AdvancedUserInterface {
+
     /**
      * @var int
      *
@@ -53,7 +56,7 @@ class User implements UserInterface
      * @Assert\NotBlank()
      */
     private $password;
-    
+
     /**
      *
      * @var ArrayCollection
@@ -64,26 +67,29 @@ class User implements UserInterface
      * )
      */
     private $roles;
-    
+
     /**
      * @var Float 
      * @ORM\Column(name="balance", type="decimal", precision=10, scale=2)
      */
     private $balance;
-    
-    
-    
-    public function __construct(){
-      $this->roles = new ArrayCollection();
-      $this->balance = 0;
+
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    public function __construct() {
+        $this->roles = new ArrayCollection();
+        $this->balance = 0;
     }
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -94,8 +100,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -106,8 +111,7 @@ class User implements UserInterface
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -118,8 +122,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
         return $this;
     }
@@ -129,19 +132,16 @@ class User implements UserInterface
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
-    
-    
+
     /**
      * set balance
      * @param type $balance
      * @return \ShopBundle\Entity\User
      */
-    public function setBalance($balance)
-    {
+    public function setBalance($balance) {
         $this->balance = $balance;
         return $this;
     }
@@ -151,28 +151,26 @@ class User implements UserInterface
      *
      * @return decimal
      */
-    public function getBalance()
-    {
+    public function getBalance() {
         return $this->balance;
     }
-    
+
     /**
      *  @return User
      */
-    public function increaseBalanceBy($amount){
-        $this->balance+=$amount;
+    public function increaseBalanceBy($amount) {
+        $this->balance += $amount;
         return $this;
     }
-    
-     /**
+
+    /**
      *  @return User
      */
-    public function decreaseBalanceBy($amount){
-        $this->balance-=$amount;
+    public function decreaseBalanceBy($amount) {
+        $this->balance -= $amount;
         return $this;
     }
-    
-    
+
     /**
      * Set password
      *
@@ -180,8 +178,7 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
         return $this;
     }
@@ -191,23 +188,22 @@ class User implements UserInterface
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
     public function eraseCredentials() {
         
     }
-  
-    
-    public function addRole($role){
+
+    public function addRole($role) {
         $this->roles->add($role);
     }
-    public function getRoles() {        
-        
-        $rolesStrings =[];
-        foreach($this->roles as $role){
+
+    public function getRoles() {
+
+        $rolesStrings = [];
+        foreach ($this->roles as $role) {
             $rolesStrings[] = $role->getName();
         }
         return $rolesStrings;
@@ -217,15 +213,57 @@ class User implements UserInterface
         return null;
     }
 
-    public function getUsername(){
+    public function getUsername() {
         return $this->getEmail();
     }
-    
-    public function getCart(){
-        return $this->cart;
+
+    public function isAccountNonExpired() {
+        return true;
     }
-    public function setCart($cart){
-        $this->cart = $cart;
+
+    public function isAccountNonLocked() {
+        return true;
+    }
+
+    public function isCredentialsNonExpired() {
+        return true;
+    }
+
+    public function isEnabled() {
+        return $this->isActive;
+    }
+
+    public function isActive() {
+        return $this->isEnabled();
+    }
+    
+    public function setIsActive($value) {
+        $this->isActive = $value;
         return $this;
     }
+
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->name,
+            $this->password,
+            $this->email,
+            $this->balance,
+            $this->roles,
+            $this->isActive
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list (
+                $this->id,
+                $this->name,
+                $this->password,
+                $this->email,
+                $this->balance,
+                $this->roles,
+                $this->isActive
+                ) = unserialize($serialized);
+    }
+
 }

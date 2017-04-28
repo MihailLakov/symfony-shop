@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use ShopBundle\Form\ProductType;
 use ShopBundle\Entity\Product;
 class ProductController extends Controller {
@@ -103,5 +104,20 @@ class ProductController extends Controller {
         $em->flush();
         $this->get('session')->getFlashBag()->set('success', "Product deleted ");
         return $this->redirectToRoute('admin-homepage');
+    }
+    
+    /**
+     * @Route("/admin/product/form/{$id}", name="admin-product-edit-form")
+     * @Method("GET")   
+     * @param Product $product
+     * @return Response
+     */
+    public function editProductFormAction(Product $product)
+    {   
+        $form = $this->createForm(ProductType::class,$product);
+        return $this->render('admin/product/edit-form.html.twig', array(
+            'editProductForm' => $form->createView(),
+            'product' => $product
+        ));
     }
 }

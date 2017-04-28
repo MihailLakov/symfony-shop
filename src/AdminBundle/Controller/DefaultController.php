@@ -9,6 +9,7 @@ use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Brand;
 use ShopBundle\Entity\Category;
 use ShopBundle\Entity\Promotion;
+use ShopBundle\Entity\User;
 use ShopBundle\Entity\CustomerOrder;
 class DefaultController extends Controller
 {
@@ -92,6 +93,21 @@ class DefaultController extends Controller
         
         return $this->render('admin/manage_orders.html.twig', array(
             'orders'=>$orders
+        ));    
+   
+    }
+    
+    /**
+     * @Route("/admin/users", name="admin-manage-users")
+     * @Security("has_role('ROLE_ADMIN')") 
+     */
+    public function adminManageUsersAction()
+    {
+        $repo = $this->getDoctrine()->getRepository(User::class);        
+        $users = $repo->findAll();
+        
+        return $this->render('admin/manage_users.html.twig', array(
+            'users'=>$users
         ));    
    
     }

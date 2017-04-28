@@ -1,0 +1,35 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Users Catalog</h2>
+            </div>
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Balance</th>
+                        <th>Enabled</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.balance}}</td>
+                            <td>{{user.isActive}}</td>
+                            <td>  <a href="{{path('admin-user-edit',{id:user.id})}}"  class="btn btn-info">Edit</a>           </td>    
+
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

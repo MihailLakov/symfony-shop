@@ -1,0 +1,74 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            <h2>Edit User - {{ user.name }}</h2>
+            <div class="well">
+                {{ form_start(editUserForm) }}
+                {{ form_widget(editUserForm) }}
+                <input type="submit" value="Edit" class="btn btn-lg">
+                <a href="{{path('admin-user-delete',{id:user.id}) }}"  class="btn btn- btn-primary">Delete</a>
+                {{ form_rest(editUserForm) }}
+                {{ form_end(editUserForm) }}
+            </div>
+
+            <h2> {{ user.name }} cart</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Brand</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Image</th>                    
+                    <th>Action</th>                    
+                </tr>               
+                {% for cartProduct in cartProducts %}
+                    <tr>
+                        <td>{{cartProduct.product.id}}</td>
+                        <td>{{cartProduct.product.title}}</td>
+                        <td>{{cartProduct.product.description}}</td>
+                        <td>{{cartProduct.product.category.title}}</td>
+                        <td>{{cartProduct.product.brand.title}}</td>
+                        <td>{{cartProduct.product.price}}</td>
+                        <td>{{cartProduct.product.stock}}</td>
+                        <td> <img class="img-responsive" src="/images/products/{{cartProduct.product.image}}" alt="image"></td>                        
+                        <td>  
+                            <a href="{{path('admin-product-edit',{id:cartProduct.product.id}) }}"  class="btn btn-info">Edit Product</a>        
+
+                        </td>    
+                    </tr>
+                {% endfor %}
+
+
+            </table>
+
+            <h2> {{ user.name }} Orders</h2>
+            {% for order in orders %}
+                <h3>Order {{order.id}}</h3>
+                <p>Order status: {{order.status.title}}</p>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Product name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>    
+                        <th>Total</th>                       
+                    </tr>
+                    {% for item in orderProducts %}
+                        <tr>
+                            <td><a href="{{path('admin-product-edit',{id:item.product.id})}}">{{item.product.title}}</a></td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>{{item.quantity * item.price }}</td>                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
