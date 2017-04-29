@@ -10,3 +10,6 @@ services:
     app.stats_generator:
         class:     ShopBundle\Service\StatsGenerator
         arguments: ['@doctrine.orm.entity_manager']
+    app.menu_generator:
+        class:     ShopBundle\Service\MenuGenerator
+        arguments: ['@doctrine.orm.entity_manager']

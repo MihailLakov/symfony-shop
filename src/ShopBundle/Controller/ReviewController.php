@@ -19,7 +19,7 @@ class ReviewController extends Controller
      * @Route("/product/{id}/reviews/add", name="leave-review-form")
      * @Method("GET")   
      * @param Product $product
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function leaveReviewFormAction(Product $product)
     {
@@ -45,7 +45,7 @@ class ReviewController extends Controller
             $review->setDateAdded( new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($review);
-            $entityManager->flush();
+            $entityManager->flush();           
             $this->addFlash("info", "Review added");
             return $this->redirectToRoute('view-product', ['id' => $product->getId()]);
         }

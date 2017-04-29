@@ -7,9 +7,9 @@
                     <li><a href="{{path('security-register')}}">Register</a></li>
                     <li><a href="{{path('user-profile')}}">Profile</a></li>  
                     <li><a href="{{path('show-cart')}}">Cart</a></li>  
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="{{path('security-logout')}}">Logout</a></li>
-                    {%endif%}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li><a href="{{path('security-logout')}}">Logout</a></li>
+                        {%endif%}
                 </ul>
             </div>
         </div>
@@ -20,41 +20,48 @@
     <div class="container">
         <div class="row">
             <nav class="navbar navbar-default">                    
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>                        
-                    </div>           
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="{{path('homepage')}}"><span class="glyphicon glyphicon-home"></span></a></li>
-                            <li><a href="{{path('products-catalog')}}">Products</a></li>
-                            <li><a href="{{path('products-catalog')}}">Categories</a></li>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>                        
+                </div>           
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{path('homepage')}}"><span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="{{path('products-catalog')}}">Products</a></li>
+                        <li class="dropdown">
+                            <a href="{{path('products-catalog')}}" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >Categories<span class="caret"></span></a>
+                            <ul class="dropdown-menu">                 
+                                {% for item in (category_menu_items.generateCategoryMenuItems()) %}
+                                    <li><a href="{{ path('view-category',{id:item.id}) }}">{{item.title}}</a></li>
+                                {% endfor %}
+                                </ul>                       
+                            </li>
                             <li><a href="{{path('products-catalog')}}">Brands</a></li>
                             <li><a href="{{path('products-catalog')}}">Promotions</a></li>
                         </ul> 
                     </div>
-            </nav>
+                </nav>
+            </div>
         </div>
+    </header>
+    <div class="notifications">    
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="alert alert-info" role="alert">{{ flashMessage }}</div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('warning') %}
+            <div class="alert alert-warning" role="alert">{{ flashMessage }}</div>
+        {% endfor %}    
     </div>
-</header>
-<div class="notifications">    
-    {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
-    {% endfor %}
-
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
-    {% endfor %}
-
-    {% for flashMessage in app.session.flashbag.get('info') %}
-        <div class="alert alert-info" role="alert">{{ flashMessage }}</div>
-    {% endfor %}
-
-    {% for flashMessage in app.session.flashbag.get('warning') %}
-        <div class="alert alert-warning" role="alert">{{ flashMessage }}</div>
-    {% endfor %}    
-</div>

@@ -122,11 +122,15 @@ class Review
         $this->product = $product;
     }
     
-    
+    /**
+     * return DateTime
+     */
     public function getDateAdded(){
         return $this->dateAdded;
     }
-    
+    /**
+     * @param DateTime $date
+     */
     public function setDateAdded($date){
         $this->dateAdded = $date;
         return $this;
