@@ -15,8 +15,8 @@
 
                                 <h3 class="product-title">{{product.title}}  </h3>    
                                 <p><strong>Description: </strong>{{product.description}} </p>
-                                <p><strong>Brand:</strong> {{product.brand.title}}</p>
-                                <p><strong>Category:</strong> {{product.category.title}}</p>
+                                <p><strong>Brand:</strong> <a href="{{path('catalog-view-brand',{id:product.brand.id}) }}">{{product.brand.title}}</a></p>
+                                <p><strong>Category:</strong> <a href="{{path('catalog-view-brand',{id:product.category.id}) }}">{{product.category.title}}</a></p>
                                 <p><strong>Stock:</strong>{{ product.stock}}</p>
                                 <p class="price">{{ product.price }} BGN</p>                
                                 <input type="number"  name="product_quantity" class="form-control" value="1" min="1">
