@@ -33,35 +33,43 @@
                         <li><a href="{{path('homepage')}}"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li><a href="{{path('products-catalog')}}">Products</a></li>
                         <li class="dropdown">
-                            <a href="{{path('products-catalog')}}" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >Categories<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >Categories<span class="caret"></span></a>
                             <ul class="dropdown-menu">                 
-                                {% for item in (category_menu_items.generateCategoryMenuItems()) %}
-                                    <li><a href="{{ path('view-category',{id:item.id}) }}">{{item.title}}</a></li>
+                                {% for item in (menu_generator.generateCategoryMenuItems()) %}
+                                    <li><a href="{{ path('catalog-view-category',{id:item.id}) }}">{{item.title}}</a></li>
                                 {% endfor %}
-                                </ul>                       
-                            </li>
-                            <li><a href="{{path('products-catalog')}}">Brands</a></li>
-                            <li><a href="{{path('products-catalog')}}">Promotions</a></li>
-                        </ul> 
-                    </div>
-                </nav>
-            </div>
+                            </ul>                       
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >Brands<span class="caret"></span></a>
+                            <ul class="dropdown-menu">                 
+                                {% for item in (menu_generator.generateBrandMenuItems()) %}
+                                    <li><a href="{{ path('catalog-view-brand',{id:item.id}) }}">{{item.title}}</a></li>
+                                {% endfor %}
+                            </ul>                       
+                        </li>
+                        </li>
+                        <li><a href="{{path('products-catalog')}}">Promotions</a></li>
+                    </ul> 
+                </div>
+            </nav>
         </div>
-    </header>
-    <div class="notifications">    
-        {% for flashMessage in app.session.flashbag.get('error') %}
-            <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
-        {% endfor %}
-
-        {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
-        {% endfor %}
-
-        {% for flashMessage in app.session.flashbag.get('info') %}
-            <div class="alert alert-info" role="alert">{{ flashMessage }}</div>
-        {% endfor %}
-
-        {% for flashMessage in app.session.flashbag.get('warning') %}
-            <div class="alert alert-warning" role="alert">{{ flashMessage }}</div>
-        {% endfor %}    
     </div>
+</header>
+<div class="notifications">    
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger" role="alert">{{ flashMessage }}</div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success" role="alert">{{ flashMessage }}</div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('info') %}
+        <div class="alert alert-info" role="alert">{{ flashMessage }}</div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning" role="alert">{{ flashMessage }}</div>
+    {% endfor %}    
+</div>

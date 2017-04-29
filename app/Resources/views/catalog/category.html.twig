@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
     <div class="container">
-        <div class="row">
-            
-            <h2>Category {{products[0].category.title}}</h2>
+        <div class="row">            
+            <div class="col-xs-12">
+                <h2>Category {{products[0].category.title}}</h2>
+            </div>
             {% for product in products %}
-             {{ render(controller('ShopBundle:Product:singleProductTemplate', {'id': product.id})) }}
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    {{ render(controller('ShopBundle:Product:singleProductTemplate', {'id': product.id})) }}
+                </div>
             {% endfor %}
         </div>
     </div>

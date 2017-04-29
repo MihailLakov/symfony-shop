@@ -40,7 +40,7 @@ twig:
     globals:
         product_images_dir: '%product_images_dir%'
         store_name: '%store_name%'
-        category_menu_items: '@app.menu_generator'
+        menu_generator: '@app.menu_generator'
         
 # Doctrine Configuration
 doctrine:

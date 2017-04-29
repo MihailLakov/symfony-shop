@@ -17,13 +17,11 @@ class CatalogController extends Controller {
     public function showProductsAction(Request $request) {
         
         $repo = $this->getDoctrine()->getRepository(Product::class);        
-        $products = $repo->findAllPublishedProductsWithStock();
-        
+        $products = $repo->findAllPublishedProductsWithStock();        
         return $this->render('catalog/products.html.twig', array(
             'products'=>$products
         ));    
-    }
-    
+    }    
     
     /**
      * @Route("/catalog/category/{id}", name="catalog-view-category") 
@@ -36,8 +34,21 @@ class CatalogController extends Controller {
         
         return $this->render('catalog/category.html.twig', array(
             'products'=>$products                
-        ));    
+        )); 
+    }
+    
+    /**
+     * @Route("/catalog/brand/{id}", name="catalog-view-brand") 
+     * @param Request $request, int $id
+     * @return Response 
+     */
+    public function showProductsByBrandAction(Request $request, $id){
+        $repo = $this->getDoctrine()->getRepository(Product::class);        
+        $products = $repo->findAllProductsFromBrand($id);
         
+        return $this->render('catalog/brand.html.twig', array(
+            'products'=>$products                
+        )); 
     }
     
   
