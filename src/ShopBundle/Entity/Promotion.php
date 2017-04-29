@@ -5,7 +5,7 @@ namespace ShopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ShopBundle\Entity\Product;
 use ShopBundle\Entity\Category;
-use ShopBundle\Entity\PromotionType;
+use ShopBundle\Entity\PromoType;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Promotion
@@ -63,14 +63,14 @@ class Promotion
      */
     private $category;
     
-    
     /**
-     * @var PromotionType
+     * @var PromoType
      *
-     * @ORM\ManyToOne(targetEntity="PromotionType")
-     * @ORM\JoinColumn(name="promotiontype_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="PromoType")
+     * @ORM\JoinColumn(name="promotype_id", referencedColumnName="id")
      */
-    private $promotionType;
+    private $promoType;
+
     /**
      * Get id
      *
@@ -169,6 +169,15 @@ class Promotion
     
     public function getCategory(){
         return $this->category;
+    }
+    
+    public function setPromoType($promoType){
+        $this->promoType = $promoType;
+        return $this;
+    }
+    
+    public function getPromoType(){
+        return $this->promoType;
     }
 }
 
