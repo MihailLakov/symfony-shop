@@ -51,5 +51,14 @@ class StatsGenerator {
                         ->getQuery()
                         ->getSingleScalarResult();
     }
+    
+    public function getTotalNumberOfBrandsAction() {
+
+        return $this->entityManager->getRepository(CustomerOrder::class)
+                        ->createQueryBuilder('o')
+                        ->select('count(o.id)')
+                        ->getQuery()
+                        ->getSingleScalarResult();
+    }
 
 }

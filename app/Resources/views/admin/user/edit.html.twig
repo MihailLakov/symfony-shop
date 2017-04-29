@@ -8,8 +8,8 @@
             <div class="well">
                 {{ form_start(editUserForm) }}
                 {{ form_widget(editUserForm) }}
-                <input type="submit" value="Edit" class="btn btn-lg">
-                <a href="{{path('admin-user-delete',{id:user.id}) }}"  class="btn btn- btn-primary">Delete</a>
+                <button type="submit" value="Edit" class="btn btn-primary">Edit</button>
+                <a href="{{path('admin-user-delete',{id:user.id}) }}"  class="btn btn-danger">Delete</a>
                 {{ form_rest(editUserForm) }}
                 {{ form_end(editUserForm) }}
             </div>

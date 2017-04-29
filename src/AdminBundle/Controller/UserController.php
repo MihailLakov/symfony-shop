@@ -57,7 +57,7 @@ class UserController extends Controller {
         $cart = $this->getDoctrine()->getRepository(Cart::class)->findOneBy(['user' => $user]);
         $cartProducts = $this->getDoctrine()->getRepository(CartProduct::class)->findBy(['cart' => $cart]);
         $customerOrders = $this->getDoctrine()->getRepository(CustomerOrder::class)->findBy(['user' => $user]);
-        $orderProducts;
+        $orderProducts = array();
         foreach($customerOrders as $order){
             $orderProducts = $this->getDoctrine()->getRepository(OrderProduct::class)->findBy(['order' => $order]);
         }

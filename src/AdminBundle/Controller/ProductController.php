@@ -61,19 +61,22 @@ class ProductController extends Controller {
              $this->get('session')->getFlashBag()->set('info', "Product with id: $id not found ");
              return $this->redirectToRoute('admin-homepage');
         }
-        
+        $currentImage = $product->getImage();
         $form = $this->createForm(ProductType::class,$product);
         $form->handleRequest($request); 
-      
+    
         if($form->isSubmitted() && $form->isValid()){
             
             $em = $this->getDoctrine()->getManager();
-            $image = $product->getImage();    
-            if($image instanceof UploadedFile){
+            $image = $product->getImage();             
+            if($image instanceof UploadedFile){                
                 $imageName = md5(uniqid()).'.' . $image->guessExtension();            
                 $image->move($this->getParameter('product_images_dir'), $imageName);            
-                $product->setImage($imageName);    
+                $product->setImage($imageName);                    
+            } else{
+                $product->setImage($currentImage);
             }
+            
             $em->flush();
             $this->get('session')->getFlashBag()->set('success', 'Product updated');    
             return $this->redirectToRoute('admin-manage-products'); 

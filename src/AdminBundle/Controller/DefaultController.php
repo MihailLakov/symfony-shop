@@ -23,11 +23,13 @@ class DefaultController extends Controller
         $categoriesCount = $this->container->get('app.stats_generator')->getTotalNumberOfCategoriesAction();
         $productsCount = $this->container->get('app.stats_generator')->getTotalNumberOfProductsAction();
         $ordersCount = $this->container->get('app.stats_generator')->getTotalNumberOfOrdersAction();
+        $brandsCount = $this->container->get('app.stats_generator')->getTotalNumberOfBrandsAction();
         return $this->render('admin/index.html.twig', array(
             'usersCount' => $usersCount,
             'categoriesCount' => $categoriesCount,
             'productsCount' => $productsCount,
-            'ordersCount' => $ordersCount
+            'ordersCount' => $ordersCount,
+            'brandsCount' => $brandsCount
         ));
     }
     

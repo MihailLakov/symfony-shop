@@ -12,7 +12,7 @@ class ProductModules {
     }
     public function latestProductsAction($limit = 5){
         $repo = $this->entityManager->getRepository(Product::class);
-        $result = $repo->findBy(array(),array('id' => 'DESC'),$limit);
+        $result = $repo->findBy(array('published'=> '1'),array('id' => 'DESC'),$limit);
         return $result;
     }
 

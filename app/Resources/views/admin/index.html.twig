@@ -4,27 +4,36 @@
    <div class="container">
        <div class="row">
            <div class="col-xs-12">
-               <h1>Administartion Panel</h1>
-               <h2>Hello {{app.user.name }}</h2>
+               <h1>Hello {{app.user.name }}, welcome to the administartion panel</h1>              
            </div>
            <div class="col-xs-12">
-               <h2> Stats</h2>
+               <h2>Store Stats</h2>
                <div class="well">
-                   <p><strong>Total users: </strong>{{usersCount}}</p>
-                   <p><strong>Total products:</strong>{{productsCount}}</p>
-                   <p><strong>Total categories:</strong>{{categoriesCount}}</p>
-                   <p><strong>Total orders:</strong>{{ordersCount}}</p>
+                   <ul class="list-group">
+                    <li class="list-group-item">
+                      <span class="badge">{{usersCount}}</span>
+                      <strong>Total users: </strong>
+                    </li>
+                     <li class="list-group-item">
+                      <span class="badge">{{productsCount}}</span>
+                      <strong>Total products: </strong>
+                    </li>
+                     <li class="list-group-item">
+                      <span class="badge">{{categoriesCount}}</span>
+                      <strong>Total categories: </strong>
+                    </li>
+                     <li class="list-group-item">
+                      <span class="badge">{{ordersCount}}</span>
+                      <strong>Total orders: </strong>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="badge">{{brandsCount}}</span>
+                      <strong>Total brands: </strong>
+                    </li>
+                  </ul>      
                </div>               
            </div>
-           <div class="col-xs-12">
-               <h2> Manage products</h2>
-           </div>
-           <div class="col-xs-12">
-               <h2> Manage users</h2>
-           </div>
-             <div class="col-xs-12">
-               <h2> Manage categories</h2>
-           </div>
+         
        </div>
    </div>
 {% endblock %}
